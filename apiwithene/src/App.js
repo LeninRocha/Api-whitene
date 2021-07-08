@@ -15,8 +15,18 @@ function App() {
     carregarMaterial();
   }, [])
   return (
+    //usar o sort para limitar as buscas pelos valores(de maior para menor) e filter para o valor a partir do necessario
     <div >
-      {material.sort((a, b) => a.preco - b.preco).filter((element, index) => element.preco > 700).map((material) => {
+    
+      {material.sort((a, b) => a.preco - b.preco).filter((element, index) => element.preco > 700)
+      .reduce((acc, item) => { // reduce começa aqui
+        if(!acc[item.createAt]){
+            acc[item.createAt] =[]
+        }
+        acc[item.createAt].push(item)
+        return acc
+      }) // termina aqui
+      .map((material) => {
         return (
           <div key={material.id}>
             <h1>{material.nome}</h1><br />
