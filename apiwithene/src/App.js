@@ -19,13 +19,6 @@ function App() {
     <div >
     
       {material.sort((a, b) => a.preco - b.preco).filter((element, index) => element.preco > 700)
-      .reduce((acc, item) => { // reduce começa aqui
-        if(!acc[item.createAt]){
-            acc[item.createAt] =[]
-        }
-        acc[item.createAt].push(item)
-        return acc
-      }) // termina aqui
       .map((material) => {
         return (
           <div key={material.id}>
